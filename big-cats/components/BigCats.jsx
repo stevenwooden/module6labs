@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import SingleCat from "./SingleCat";
-
+import AddCatForm from './AddCatForm';
 
 
 function BigCats() {
@@ -43,7 +43,10 @@ function BigCats() {
         let newCats = cats.filter ((cat) => cat.latinName.includes('Panthera') )
         setOrder(newCats)
     }
-    
+    const handleAddCat = (newCats) => {
+        newMovie.id = order.length + 1;
+        setOrder([...order,newCats])
+    }
 
     return (
         <div className="BigCats">
@@ -51,6 +54,7 @@ function BigCats() {
             <button onClick={alphaOrder}>Sort</button>
             <button onClick={resetOrder}>Reset</button>
             <button onClick={filterOrder}>Panthera</button>
+            <AddCatForm onAddCat = {handleAddCat}/>
             <ul>
                 {catlist}
                 {/* {cats.map((cat) => (
